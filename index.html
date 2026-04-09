@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Don't Wanna Be One Thing — My First Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #faf6ef;
+    --warm: #e8dcc8;
+    --rust: #c4551a;
+    --gold: #d4a843;
+    --sage: #7a8c6e;
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+ 
+  /* grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+ 
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    animation: fadeUp 0.9s ease both;
+  }
+ 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  /* header */
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--warm);
+  }
+ 
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+ 
+  h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+ 
+  /* song block */
+  .song {
+    border-left: 3px solid var(--gold);
+    background: linear-gradient(135deg, #f5ede0 0%, #faf0e4 100%);
+    padding: 28px 32px;
+    margin: 40px 0;
+    border-radius: 0 8px 8px 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 2;
+    color: #3a2a18;
+    position: relative;
+  }
+ 
+  .song::before {
+    content: '♪';
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    font-size: 1.4rem;
+    color: var(--gold);
+    background: var(--paper);
+    padding: 0 8px;
+    font-style: normal;
+  }
+ 
+  /* body text */
+  p {
+    margin-bottom: 22px;
+    font-size: 1.05rem;
+    color: #2e2016;
+  }
+ 
+  /* habits section */
+  .habits-intro {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--rust);
+    margin: 48px 0 24px;
+    letter-spacing: -0.01em;
+  }
+ 
+  .habit {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    align-items: flex-start;
+  }
+ 
+  .habit-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--rust);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+ 
+  .habit-text strong {
+    display: block;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-size: 1rem;
+  }
+ 
+  .habit-text p {
+    margin-bottom: 0;
+    font-size: 0.97rem;
+    color: #4a3824;
+  }
+ 
+  /* closing quote */
+  .closing {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--warm);
+  }
+ 
+  .closing-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+ 
+  .shishtora {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+ 
+  /* footer tag */
+  .byline {
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.82rem;
+    color: var(--sage);
+    letter-spacing: 0.08em;
+  }
+ 
+  .byline::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--sage);
+  }
+</style>
+</head>
+<body>
+<article class="wrapper">
+ 
+  <div class="label">My First Blog &nbsp;·&nbsp; April 2026</div>
+ 
+  <h1>I Don't Wanna Be <em>One Thing</em></h1>
+ 
+  <p>When I was young, I wrote a song. I didn't know what I was building — I just knew something felt too tight, like the future was a box someone else had measured for me.</p>
+ 
+  <div class="song">
+    I don't wanna be an artist, I don't wanna be a queen<br>
+    I wanna be something in which I could be everything<br>
+    Is it actual, or is it a dream?<br>
+    I wanna be something in which I could be everything
+  </div>
+ 
+  <p>Why can't I be multiple things at once? Why can't my identity be fluid?</p>
+ 
+  <p>Growing up, I watched everyone settle into an identity — one role, one path, one definition. But what happens to the rest of you? What are you when you step outside that role? Are those parts of you just background noise, or are they also you?</p>
+ 
+  <p>Society rewards clarity and labels. Ambiguity feels risky. So slowly, without realising it, I started choosing the safe version of myself — sticking to one lane, avoiding the unexplored sides because I was afraid that exploring them would confuse people. Or worse, confuse me.</p>
+ 
+  <p>But then a question lodged itself in my brain and refused to leave: <em>Is it possible to build a version of myself that doesn't shrink me to one identity?</em></p>
+ 
+  <p>Here's what I've come to believe — your identity isn't a decision you make once. It's the sum of your small, daily actions. You don't wake up and choose who you are. You become who you are, one tiny choice at a time.</p>
+ 
+  <p class="habits-intro">So here are the teeny tiny habits that are building me:</p>
+ 
+  <div class="habit">
+    <div class="habit-num">01</div>
+    <div class="habit-text">
+      <strong>Document, don't just consume.</strong>
+      <p>End every day with 3–4 lines written somewhere. I still have the scrappy, inconsistent list of poems I wrote as a teenager — and that messy collection is now one of my biggest proofs of creativity. Write it down, even badly.</p>
+    </div>
+  </div>
+ 
+  <div class="habit">
+    <div class="habit-num">02</div>
+    <div class="habit-text">
+      <strong>Finish small things.</strong>
+      <p>Not big projects — just closures. One post. One idea. One paragraph. One more hour. Small completions build the muscle of finishing, and finishing builds identity.</p>
+    </div>
+  </div>
+ 
+  <div class="habit">
+    <div class="habit-num">03</div>
+    <div class="habit-text">
+      <strong>Have opinions, even imperfect ones.</strong>
+      <p>Pick a side and say what you think — even when it's half-formed. Practising this tells your own mind: this is my building, and my voice matters here.</p>
+    </div>
+  </div>
+ 
+  <div class="habit">
+    <div class="habit-num">04</div>
+    <div class="habit-text">
+      <strong>Only compare yourself to yourself.</strong>
+      <p>Silent comparisons are poison. If something bothers you, become better than the version of you that it bothered. The metric by which you measure yourself is everything.</p>
+    </div>
+  </div>
+ 
+  <div class="habit">
+    <div class="habit-num">05</div>
+    <div class="habit-text">
+      <strong>Create a daily task — and let its completion be enough.</strong>
+      <p>That small win is your excellence for the day. Discomfort at the start of something new is normal. It means you're growing.</p>
+    </div>
+  </div>
+ 
+  <div class="closing">
+    <p class="closing-q">"I'm going to be an entrepreneur, a strong woman, a poet, a writer, a girl, and someone who never gives up — regardless of what my role description says."</p>
+ 
+    <p>I'm proud of who I'm becoming. And as a teaser — I've been quietly building something. A workspace brand rooted in Indian culture, started by two 19-year-olds with zero funds. The first collection is ready. The drop is coming.</p>
+ 
+    <span class="shishtora">Shishtora — coming soon</span>
+ 
+    <p style="margin-top: 32px; font-size: 1rem;">So tell me — who are <em>you</em> becoming?</p>
+  </div>
+ 
+  <div class="byline">Written by a work-in-progress &nbsp;·&nbsp; Est. always</div>
+ 
+</article>
+</body>
+</html>
+ 
