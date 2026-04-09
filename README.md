@@ -1,4 +1,5 @@
-#My Blog
+My Blog
+
 A space where I refuse to be one thing.
 Writing about identity, creativity, entrepreneurship, and the messy in-between. Built with plain HTML, no templates, no platforms, just words and design that feel like me.
 
