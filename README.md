@@ -1,2 +1,6 @@
-# blog
-Personal blog by a 19-year-old entrepreneur, poet, and everything in between. Writing about identity, building, and becoming one post at a time. Home of unfiltered thoughts and the Shishtora story.
+#My Blog
+A space where I refuse to be one thing.
+Writing about identity, creativity, entrepreneurship, and the messy in-between. Built with plain HTML, no templates, no platforms, just words and design that feel like me.
+
+Who's behind this: A 19-year-old building Shishtora — a workspace brand rooted in Indian culture, started with zero funds and a lot of nerve.
+New posts drop here before anywhere else.
