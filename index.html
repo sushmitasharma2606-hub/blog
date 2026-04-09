@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sushmita Sharma</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #faf6ef;
+    --warm: #e8dcc8;
+    --rust: #c4551a;
+    --gold: #d4a843;
+    --sage: #7a8c6e;
+    --soft: #f5ede0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--warm);
+    animation: fadeDown 0.7s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rust); }
+
+  /* HERO */
+  .hero {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 90px 32px 70px;
+    animation: fadeUp 0.9s ease 0.1s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--warm);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-bio {
+    font-size: 1.08rem;
+    color: #4a3824;
+    max-width: 540px;
+    margin-bottom: 40px;
+    line-height: 1.9;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--warm);
+    color: var(--sage);
+    background: transparent;
+  }
+
+  .tag.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 760px;
+    margin: 0 auto 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  .divider span {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    white-space: nowrap;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--warm);
+  }
+
+  /* BLOG SECTION */
+  .section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 32px;
+    animation: fadeUp 0.9s ease 0.3s both;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 32px;
+  }
+
+  /* blog post card */
+  .post-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--warm);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    gap: 24px;
+  }
+
+  .post-card:first-of-type { border-top: 1px solid var(--warm); }
+
+  .post-card:hover .post-title { color: var(--rust); }
+  .post-card:hover .post-arrow { transform: translateX(5px); color: var(--rust); }
+
+  .post-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 8px;
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 0.2s;
+    margin-bottom: 8px;
+  }
+
+  .post-excerpt {
+    font-size: 0.9rem;
+    color: #7a6a55;
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .post-arrow {
+    font-size: 1.4rem;
+    color: var(--warm);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  /* SHISHTORA */
+  .shishtora-block {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+    animation: fadeUp 0.9s ease 0.4s both;
+  }
+
+  .shishtora-card {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 12px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shishtora-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: var(--rust);
+    opacity: 0.15;
+  }
+
+  .shishtora-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 30%;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.08;
+  }
+
+  .s-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .s-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .s-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .s-desc {
+    font-size: 0.95rem;
+    color: #c8b89a;
+    line-height: 1.8;
+    max-width: 440px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .s-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .s-btn:hover { opacity: 0.85; }
+
+  /* SOCIALS */
+  .socials {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px 100px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.9s ease 0.5s both;
+  }
+
+  .socials-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  .social-link {
+    font-size: 0.85rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--warm);
+    padding-bottom: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .social-link:hover {
+    color: var(--rust);
+    border-color: var(--rust);
+  }
+
+  /* footer */
+  footer {
+    border-top: 1px solid var(--warm);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--sage);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 20px 24px; }
+    .nav-links { gap: 18px; }
+    .hero, .section, .shishtora-block, .socials { padding-left: 24px; padding-right: 24px; }
+    .shishtora-card { padding: 32px 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">Sushmita Sharma</a>
+  <ul class="nav-links">
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#shishtora">Shishtora</a></li>
+    <li><a href="#find-me">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="label">Hello, world &nbsp;·&nbsp; Welcome</div>
+  <h1>I refuse to be<br><em>one thing.</em></h1>
+  <p class="hero-bio">
+    I'm Sushmita — 19 years old, building ventures, writing words, and figuring out how to be everything at once. 
+    This is my corner of the internet where I think out loud, share what I'm building, and refuse to pick just one lane.
+  </p>
+  <div class="hero-tags">
+    <span class="tag active">Entrepreneur</span>
+    <span class="tag">Poet</span>
+    <span class="tag">Writer</span>
+    <span class="tag">Builder</span>
+    <span class="tag">Work in progress</span>
+  </div>
+</section>
+
+<!-- BLOG -->
+<div class="divider"><span>Words</span></div>
+<section class="section" id="blog">
+  <div class="section-label">Latest from the blog</div>
+
+  <a class="post-card" href="index.html">
+    <div>
+      <div class="post-meta">April 9, 2026 &nbsp;·&nbsp; Post 01</div>
+      <div class="post-title">I Don't Wanna Be One Thing</div>
+      <div class="post-excerpt">On identity, fluidity, and why I wrote a song about wanting to be everything at once. My first blog post — unfiltered.</div>
+    </div>
+    <div class="post-arrow">→</div>
+  </a>
+
+  <!-- Add new posts above this comment as you write them -->
+
+</section>
+
+<!-- SHISHTORA -->
+<div class="divider"><span>Building</span></div>
+<section class="shishtora-block" id="shishtora">
+  <div class="shishtora-card">
+    <div class="s-eyebrow">Secret Venture &nbsp;·&nbsp; Coming Soon</div>
+    <h2 class="s-title">Introducing<br><em>Shishtora</em></h2>
+    <p class="s-desc">A workspace brand rooted in Indian culture. Designed for the way you work, built from scratch by two 19-year-olds with zero funds and a lot of nerve. First collection ready. Drop incoming.</p>
+    <a href="#" class="s-btn">Notify me</a>
+  </div>
+</section>
+
+<!-- SOCIALS -->
+<div class="divider"><span>Find me</span></div>
+<div class="socials" id="find-me">
+  <span class="socials-label">Around the web →</span>
+  <a class="social-link" href="#" target="_blank">Instagram</a>
+  <a class="social-link" href="#" target="_blank">LinkedIn</a>
+  <a class="social-link" href="#" target="_blank">Twitter / X</a>
+  <a class="social-link" href="#" target="_blank">Linktree</a>
+</div>
+
+<footer>
+  <span>© 2026 Sushmita Sharma</span>
+  <span>Built with words & zero funds ✦</span>
+</footer>
+
+</body>
+</html>
